@@ -1,9 +1,26 @@
 <template>
-  <div>
+  <v-app>
+    <navbar />
+
     <v-main>
-      <router-view></router-view>
+      <hello-world />
+      <Service />
+      <Team class="py-15" />
+      <Brands />
+      <Reviews />
+      <Contact />
+      <a
+        href="#"
+        target="_blank"
+        :class="{'smartBannerApp white--text':windowWidth>960,'smartBannerAppHandy white--text':windowWidth<960,}"
+      >
+        Unsere App
+        <i class="fas fa-mobile"></i>
+      </a>
+      <CtabuttonFemaleBarber />
+      <Footer />
     </v-main>
-  </div>
+  </v-app>
 </template>
 
 <script>
@@ -14,14 +31,28 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import jQuery from "jquery";
 
 // Components
+import Navbar from "../../components/femaleBarber/NavbarHome";
+import HelloWorld from "../../components/femaleBarber/HelloWorld";
+import Contact from "../../components/femaleBarber/Contact";
+import Team from "../../components/femaleBarber/Team";
+import Footer from "../../components/femaleBarber/Footer";
+import Brands from "../../components/femaleBarber/Brands";
+import Service from "../../components/femaleBarber/Service";
+import Reviews from "../../components/femaleBarber/Reviews";
+import CtabuttonFemaleBarber from "../../components/femaleBarber/ChatWidget";
 
 export default {
   name: "App",
-  components: {},
-  computed: {
-    getCategory() {
-      return this.$store.state.category;
-    }
+  components: {
+    Navbar,
+    HelloWorld,
+    Contact,
+    Footer,
+    Brands,
+    Service,
+    Reviews,
+    Team,
+    CtabuttonFemaleBarber
   },
 
   data: () => ({
@@ -69,15 +100,12 @@ export default {
 
 <style lang="scss" >
 @import "~bootstrap/dist/css/bootstrap.css";
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
-@import "@/assets/scss/maleBarber.scss";
-
+@import "@/assets/scss/femaleBarber.scss";
 /*--------------------------------------------------------------
 # Sections General
 --------------------------------------------------------------*/
 .spanContainer {
   color: $primary-accent-color;
-  margin-bottom: 10px;
 }
 .carouselContainer {
   border: 1px white solid;
@@ -101,20 +129,21 @@ section {
   padding-bottom: 20px;
   font-family: "Montserrat", sans-serif;
   /* color: #5f5950; */
-  color: white;
+  color: black;
   position: relative;
   line-height: 1.2em;
 }
 .section-title :before {
   content: "\a0\a0\a0\a0\a0\a0\a0\a0";
-  display: block;
+  display: flex;
+  justify-content: center;
+
   position: absolute;
   text-decoration: underline;
   width: 290px;
   overflow: hidden;
   color: $primary-accent-color;
   padding: 15px;
-  margin-bottom: 20px;
 }
 
 /* .section-title h2 {
@@ -163,4 +192,56 @@ section {
     width: 50%;
   }
 }
+
+/* App SmartbannerApp */
+.smartBannerApp {
+  position: fixed;
+  background-color: $primary-accent-color;
+  padding: 16px 40px;
+  right: -84px;
+  border-radius: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  transform: rotate(-90deg);
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: all 0.3s ease-in-out;
+}
+
+.smartBannerApp i {
+  padding-left: 10px;
+}
+
+.smartBannerApp:hover {
+  right: -74px;
+}
+.smartBannerAppHandy {
+  position: fixed;
+  background-color: $primary-accent-color;
+  padding: 14px 30px;
+  right: -62px;
+  border-radius: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  transform: rotate(-90deg);
+  font-size: 13px;
+  font-weight: 500;
+  color: white;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: all 0.3s ease-in-out;
+}
+
+.smartBannerAppHandy i {
+  padding-left: 10px;
+}
+
+/* .smartBannerAppHandy:hover {
+  text-decoration: none;
+  background-color: $primary-background-color;
+  color: $primary-accent-color;
+} */
 </style>
